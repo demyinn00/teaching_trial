@@ -31,7 +31,7 @@ class Button(pygame.sprite.Sprite):
 
   def selected(self, mouse_pos):
     # Check if button was selected. Pass in mouse_pos.
-    return 0 
+    return self.rect.collidepoint(mouse_pos)
   
   '''
   Illuminates button selected and plays corresponding sound.
@@ -40,11 +40,11 @@ class Button(pygame.sprite.Sprite):
 
   def update(self, screen):
     # Illuminate button by filling color here
-
+    self.image.fill(self.color_on)
     # blit the image here so it is visible to the player
-
+    screen.blit(self.image,self.rect)
     # Play sound
-
+    self.sound.play()
     pygame.display.update()
     self.image.fill(self.color_off)
     screen.blit(self.image, (self.rect.x, self.rect.y))
